@@ -1,0 +1,34 @@
+{
+    "name": "leegode/think-filter",
+    "description": "think-filter",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Leegode\\thinkFilter\\": "./src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Leegode",
+            "email": "liwei_1991@126.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0 || ^8.0",
+        "topthink/framework": "^5.1.10 || ^6.0.0"
+    }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
+    "extra": {
+        "think": {
+            "services": [
+                "leegode\\thinkFilter\\FilterService"
+            ],
+            "config":{
+                "captcha": "src/config.php"
+            }
+        }
+    }
+}
