@@ -27,7 +27,7 @@
                 "leegode\\thinkFilter\\FilterService"
             ],
             "config":{
-                "captcha": "src/config.php"
+                "filter": "src/config.php"
             }
         }
     }
