@@ -1,2 +1,2 @@
 <?php
-namespace Leegode\ThinkFilter;
+namespace Leegode\thinkFilter;
