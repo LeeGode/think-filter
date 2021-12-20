@@ -18,16 +18,21 @@ class AbstractFilter
         $this->input = $this->getInput($input);
     }
 
+    /**
+     * 执行过滤器方法
+     * @return Query
+     */
     public function apply()
     {
         if(method_exists($this,'init')){
             $this->init();
         }
 
+        return $this->query;
     }
     //sort
     //like
-    //厂家过滤
+    //场景过滤
 
     public function like($value)
     {
@@ -48,5 +53,13 @@ class AbstractFilter
         }
 
         return $input;
+    }
+
+    /**
+     * 设置场景过滤器
+     */
+    public function setScene($scene)
+    {
+
     }
 }

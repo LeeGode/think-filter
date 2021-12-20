@@ -1,11 +1,12 @@
 <?php
 
-namespace Leegode\ThinkFilter;
+namespace Leegode\thinkFilter;
 
 use think\facade\Config;
 
 trait Filter
 {
+    protected $filterInstance;
     /**
      * 模型搜索器入口
      * @param $query
@@ -18,9 +19,21 @@ trait Filter
             $filter = $this->getFilterClass();
         }
         $filterInstance = new $filter($query, $input);
+        $this->filterInstance =$filterInstance;
 
         return $filterInstance->apply();
 
+    }
+
+    /**
+     * 设置过滤器场景值
+     * @param $scene
+     */
+    public function scene($scene)
+    {
+
+        $this->filterInstance->setScene($scene);
+        return $this;
     }
 
     private function getFilterClass()
