@@ -16,7 +16,7 @@ trait Filter
     public function scopeFilter($query, array $input=[],$filter=null)
     {
         if ($filter === null) {
-            $filter = $this->getFilterClass();
+            $filter = $this->getClass();
         }
         $filterInstance = new $filter($query, $input);
         $this->filterInstance =$filterInstance;
@@ -36,18 +36,18 @@ trait Filter
         return $this;
     }
 
-    private function getFilterClass()
+    private function getClass()
     {
-        return method_exists($this, 'modelFilter') ? $this->modelFilter() : $this->provideFilter();
+        return method_exists($this, 'getFilterClass') ? $this->getFilterClass() : $this->getFilter();
     }
 
 
-    private function provideFilter($filter = null)
+    private function getFilter($filter = null)
     {
         if ($filter === null) {
             $filter = Config::get('filter.namespace', 'app\\filters\\').class_basename($this).'Filter';
             if(!class_exists($filter)){
-                $filter =  Config::get('filter.base_filter', 'Leegode\\ThinkFilter\\BaseFilter');
+                $filter =  Config::get('filter.base_filter', 'Leegode\\thinkFilter\\BaseFilter');
             }
         }
 
