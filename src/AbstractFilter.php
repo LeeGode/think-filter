@@ -6,7 +6,7 @@ namespace Leegode\ThinkFilter;
 
 use Leegode\ThinkFilter\Exceptions\InvalidArgumentException;
 use Leegode\ThinkFilter\Exceptions\SceneNotFoundException;
-use Leegode\ThinkFilter\Filters\DefaultFilter;
+use Leegode\ThinkFilter\Filters\dispatch;
 use think\db\Query;
 use think\facade\Request;
 use think\helper\Arr;
@@ -96,7 +96,7 @@ class AbstractFilter
 
     public function filterByDefault($key,$val)
     {
-        (new DefaultFilter($this->query))->handle($key,$val);
+        (new dispatch($this->query))->handle($key,$val);
     }
 
 
