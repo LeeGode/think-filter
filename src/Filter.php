@@ -1,6 +1,6 @@
 <?php
 
-namespace Leegode\thinkFilter;
+namespace Leegode\ThinkFilter;
 
 use think\facade\Config;
 
@@ -10,10 +10,10 @@ trait Filter
     /**
      * 模型搜索器入口
      * @param $query
-     * @param  array  $input
+     * @param  array|string  $input
      * @param $filter
      */
-    public function scopeFilter($query, array $input=[],$filter=null)
+    public function scopeFilter($query,  $input=[],$filter=null)
     {
         if ($filter === null) {
             $filter = $this->getClass();
@@ -25,16 +25,6 @@ trait Filter
 
     }
 
-    /**
-     * 设置过滤器场景值
-     * @param $scene
-     */
-    public function scene($scene)
-    {
-
-        $this->filterInstance->setScene($scene);
-        return $this;
-    }
 
     private function getClass()
     {
