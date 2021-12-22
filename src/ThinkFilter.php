@@ -20,10 +20,9 @@ trait ThinkFilter
         if ($filter === null) {
             $filter = $this->getClass();
         }
-        $filterInstance = new $filter($query, $input);
-        $this->filterInstance = $filterInstance;
+        $this->filterInstance = new $filter($query, $input);
 
-        return $filterInstance->apply();
+        return $this->filterInstance->apply();
     }
 
     private function getClass()
