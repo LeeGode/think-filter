@@ -16,10 +16,9 @@ abstract class Filter
     public function __construct($query, $name, $value)
     {
         $this->query = $query;
-        $this->name  = $name;
-        $this->value  = $value;
+        $this->name = $name;
+        $this->value = $value;
     }
-
 
     abstract public function __invoke();
 }
