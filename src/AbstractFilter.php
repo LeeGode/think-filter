@@ -2,8 +2,6 @@
 
 namespace Leegode\ThinkFilter;
 
-
-
 use Leegode\ThinkFilter\Exceptions\InvalidArgumentException;
 use Leegode\ThinkFilter\Exceptions\SceneNotFoundException;
 use Leegode\ThinkFilter\Filters\dispatch;
@@ -61,8 +59,9 @@ class AbstractFilter
     /**
      * 通过过滤参数执行过滤器
      */
-    public function filterInput()
+    public function filterInput(): void
     {
+        $this->input =$this->getInput($this->input);
         foreach ($this->input as $key=>$val){
             if($this->isEmptyInput($val)){
                 continue;
@@ -82,7 +81,7 @@ class AbstractFilter
      * @throws InvalidArgumentException
      * @throws SceneNotFoundException
      */
-    public function filterScene()
+    public function filterScene(): void
     {
         $method =$this->getSceneMethod($this->input);
         if(!method_exists($this,$method)){
@@ -93,17 +92,16 @@ class AbstractFilter
     }
 
 
-
-    public function filterByDefault($key,$val)
+    /**
+     * 默认处理
+     * @param $key
+     * @param $val
+     */
+    public function filterByDefault($key,$val): void
     {
         (new dispatch($this->query))->handle($key,$val);
     }
 
-
-    //sort
-    //like
-    //场景过滤
-    //%
 
 
     /**
@@ -148,6 +146,13 @@ class AbstractFilter
     {
 
         return $value !== '' && $value !== null && ! (is_array($value) && empty($value));
+    }
+
+    public function __call($method, $args)
+    {
+        $res = call_user_func_array([$this->query, $method], $args);
+
+        return $res instanceof Query ? $this : $res;
     }
 
 }

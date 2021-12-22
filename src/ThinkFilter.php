@@ -4,7 +4,7 @@ namespace Leegode\ThinkFilter;
 
 use think\facade\Config;
 
-trait Filter
+trait ThinkFilter
 {
     protected $filterInstance;
     /**
