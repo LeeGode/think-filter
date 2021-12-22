@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of theleegode/think-filter.
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ *
+ *
+ */
+
 namespace Leegode\ThinkFilter;
 
 use Leegode\ThinkFilter\Exceptions\InvalidArgumentException;
@@ -28,8 +37,6 @@ class AbstractFilter
      *
      * @throws InvalidArgumentException
      * @throws SceneNotFoundException
-     *
-     * @return Query
      */
     public function apply(): Query
     {
@@ -49,8 +56,6 @@ class AbstractFilter
      * 获取过滤器方法.
      *
      * @param $filed
-     *
-     * @return string
      */
     public function getFilterMethod($filed): string
     {
@@ -63,7 +68,7 @@ class AbstractFilter
     public function filterInput(): void
     {
         $this->input = $this->getInput($this->input);
-        foreach ($this->input as $key=>$val) {
+        foreach ($this->input as $key => $val) {
             $method = $this->getFilterMethod($key);
             if (method_exists($this, $method)) {
                 $this->{$method}($val);
@@ -102,17 +107,13 @@ class AbstractFilter
 
     /**
      * 获取过滤器参数.
-     *
-     * @param array $input
-     *
-     * @return array
      */
     public function getInput(array $input = []): array
     {
         if (!$input) {
             $input = Request::param('filter', []);
         }
-        foreach ($input as $key=>$val) {
+        foreach ($input as $key => $val) {
             if ($this->isEmptyInput($val)) {
                 continue;
             }
@@ -130,8 +131,6 @@ class AbstractFilter
      * @param $scene
      *
      * @throws InvalidArgumentException
-     *
-     * @return string
      */
     public function getSceneMethod($scene): string
     {
@@ -146,12 +145,10 @@ class AbstractFilter
      * 输入值是为空.
      *
      * @param $value
-     *
-     * @return bool
      */
     protected function isEmptyInput($value): bool
     {
-        return $value !== '' && $value !== null && !(is_array($value) && empty($value));
+        return '' !== $value && null !== $value && !(is_array($value) && empty($value));
     }
 
     public function __call($method, $args)

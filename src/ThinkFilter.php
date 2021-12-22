@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of theleegode/think-filter.
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ *
+ *
+ */
+
 namespace Leegode\ThinkFilter;
 
 use think\facade\Config;
@@ -17,7 +26,7 @@ trait ThinkFilter
      */
     public function scopeFilter($query, $input = [], $filter = null)
     {
-        if ($filter === null) {
+        if (null === $filter) {
             $filter = $this->getClass();
         }
         $this->filterInstance = new $filter($query, $input);
@@ -32,7 +41,7 @@ trait ThinkFilter
 
     private function getFilter($filter = null)
     {
-        if ($filter === null) {
+        if (null === $filter) {
             $filter = Config::get('filter.namespace', 'app\\filters\\').class_basename($this).'Filter';
             if (!class_exists($filter)) {
                 $filter = Config::get('filter.base_filter', 'Leegode\\ThinkFilter\\BaseFilter');

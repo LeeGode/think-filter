@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of theleegode/think-filter.
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ *
+ *
+ */
+
 namespace Leegode\ThinkFilter\Filters;
 
 class Dispatch
@@ -11,7 +20,7 @@ class Dispatch
         '<=',
         '>',
         '>=',
-        '%'=> LikeFilter::class,
+        '%' => LikeFilter::class,
     ];
 
     public function __construct($query)
@@ -27,12 +36,12 @@ class Dispatch
     protected function dispachFilter($key, $val)
     {
         //处理排序参数
-        if ($key === 'sort') {
+        if ('sort' === $key) {
             (new SortFilter($this->query, $key, $val))();
         } else {
             [$operator,$value] = $this->resolveOperator($val);
             $filter = $this->getFilterClass($operator);
-            (new  $filter($this->query, $key, $value))();
+            (new $filter($this->query, $key, $value))();
         }
     }
 
@@ -40,8 +49,6 @@ class Dispatch
      * 获取默认过滤处理类.
      *
      * @param string $operator
-     *
-     * @return string
      */
     protected function getFilterClass($operator): string
     {
@@ -50,10 +57,6 @@ class Dispatch
 
     /**
      * 解析过滤参数操作符.
-     *
-     * @param string $val
-     *
-     * @return array
      */
     protected function resolveOperator(string $val): array
     {
@@ -61,6 +64,6 @@ class Dispatch
             return [$val[0], ltrim($val, $val[0])];
         }
 
-        return  [null, $val];
+        return [null, $val];
     }
 }
