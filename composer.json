@@ -25,7 +25,7 @@
     "extra": {
         "think": {
             "services": [
-                "Leegode\\ThinkFilter\\FilterService"
+                "Leegode\\ThinkFilter\\ThinkFilterService"
             ],
             "config":{
                 "filter": "src/config.php"
