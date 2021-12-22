@@ -18,7 +18,6 @@ class Dispatch
     ];
 
 
-
     public function __construct($query)
     {
         $this->query=$query;
@@ -26,7 +25,8 @@ class Dispatch
 
     public function handle($key,$val)
     {
-        $this->resolveParam($key,$val);
+
+        $this->dispachFilter($key,$val);
     }
 
     protected function dispachFilter($key,$val){
@@ -43,12 +43,10 @@ class Dispatch
     /**
      * 获取默认过滤处理类
      * @param  string  $operator
-     *
      * @return string
      */
-    protected function getFilterClass(string $operator): string
+    protected function getFilterClass( $operator): string
     {
-
         return ($operator && self::$operatorMap[$operator]) ? self::$operatorMap[$operator] :DefaultFilter::class;
     }
 

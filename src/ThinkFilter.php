@@ -37,7 +37,7 @@ trait ThinkFilter
         if ($filter === null) {
             $filter = Config::get('filter.namespace', 'app\\filters\\').class_basename($this).'Filter';
             if(!class_exists($filter)){
-                $filter =  Config::get('filter.base_filter', 'Leegode\\thinkFilter\\BaseFilter');
+                $filter =  Config::get('filter.base_filter', 'Leegode\\ThinkFilter\\BaseFilter');
             }
         }
 

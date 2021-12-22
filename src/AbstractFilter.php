@@ -4,7 +4,7 @@ namespace Leegode\ThinkFilter;
 
 use Leegode\ThinkFilter\Exceptions\InvalidArgumentException;
 use Leegode\ThinkFilter\Exceptions\SceneNotFoundException;
-use Leegode\ThinkFilter\Filters\dispatch;
+use Leegode\ThinkFilter\Filters\Dispatch;
 use think\db\Query;
 use think\facade\Request;
 use think\helper\Arr;
@@ -63,9 +63,6 @@ class AbstractFilter
     {
         $this->input =$this->getInput($this->input);
         foreach ($this->input as $key=>$val){
-            if($this->isEmptyInput($val)){
-                continue;
-            }
             $method =$this->getFilterMethod($key);
             if(method_exists($this,$method)){
                 $this->{$method}($val);
@@ -99,7 +96,7 @@ class AbstractFilter
      */
     public function filterByDefault($key,$val): void
     {
-        (new dispatch($this->query))->handle($key,$val);
+        (new Dispatch($this->query))->handle($key,$val);
     }
 
 
@@ -115,10 +112,17 @@ class AbstractFilter
     {
 
         if(!$input){
-             $input = Request::param('filter');
+             $input = Request::param('filter',[]);
         }
-
-      return  Arr::pluck($input, array_diff(array_keys($input),  $this->ignoreFields));
+        foreach($input as $key=>$val){
+            if($this->isEmptyInput($val)){
+                continue;
+            }
+            if(in_array($key,$this->ignoreFields)){
+               unset($input,$key);
+            }
+        }
+      return $input;
 
     }
 
