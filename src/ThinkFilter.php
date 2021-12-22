@@ -26,12 +26,12 @@ trait ThinkFilter
      */
     public function scopeFilter($query, $input = [], $filter = null)
     {
-       $this->filter($query,$input,$filter);
+        $this->filter($query, $input, $filter);
     }
 
-    public function filter($query=null, $input = [], $filter = null)
+    public function filter($query = null, $input = [], $filter = null)
     {
-        if(null===$query){
+        if (null === $query) {
             $query = $this;
         }
         if (null === $filter) {
