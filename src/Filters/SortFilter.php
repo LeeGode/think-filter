@@ -1,12 +1,21 @@
 <?php
 
+/*
+ * This file is part of theleegode/think-filter.
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ *
+ *
+ */
+
 namespace Leegode\ThinkFilter\Filters;
 
 class SortFilter extends Filter
 {
     protected static $operatorMap = [
-        '+'=> 'ASC',
-        '-'=> 'DESC',
+        '+' => 'ASC',
+        '-' => 'DESC',
     ];
 
     public function __invoke()
@@ -23,8 +32,6 @@ class SortFilter extends Filter
      * 解析排序操作符.
      *
      * @param $param
-     *
-     * @return array
      */
     private function getOperator($param): array
     {
@@ -32,6 +39,6 @@ class SortFilter extends Filter
             return [$param[0], ltrim($param, $param[0])];
         }
 
-        return  ['+', $param];
+        return ['+', $param];
     }
 }
