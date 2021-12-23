@@ -30,10 +30,12 @@ trait ThinkFilter
     }
 
     /**
-     * query搜索器入口
-     * @param  null  $query
-     * @param  array  $input
-     * @param  null  $filter
+     * query搜索器入口.
+     *
+     * @param null  $query
+     * @param array $input
+     * @param null  $filter
+     *
      * @return mixed
      */
     public function filter($query = null, $input = [], $filter = null)
@@ -50,7 +52,8 @@ trait ThinkFilter
     }
 
     /**
-     * 获取过滤器类
+     * 获取过滤器类.
+     *
      * @return mixed|string|null
      */
     private function getClass()
@@ -59,7 +62,8 @@ trait ThinkFilter
     }
 
     /**
-     * 获取过滤器
+     * 获取过滤器.
+     *
      * @return mixed|string|null
      */
     private function getFilter($filter = null)
