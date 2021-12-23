@@ -10,6 +10,6 @@
  */
 
 return [
-    "namespace" => 'app\\filters\\',
-    "base_filter" => Leegode\ThinkFilter\BaseFilter::class,
+    'namespace' => 'app\\filters\\',
+    'base_filter' => Leegode\ThinkFilter\BaseFilter::class,
 ];

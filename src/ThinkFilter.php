@@ -26,19 +26,18 @@ trait ThinkFilter
      */
     public function scopeFilter($query, $input = [], $filter = null): void
     {
-        $this->filter( $input, $filter,$query);
+        $this->filter($input, $filter, $query);
     }
 
     /**
      * query搜索器入口.
      *
-     * @param  array|null  $input
-     * @param  null  $filter
+     * @param null $filter
+     * @param null $query
      *
-     * @param  null  $query
      * @return mixed
      */
-    public function filter( ?array $input = [], $filter = null,$query = null)
+    public function filter(?array $input = [], $filter = null, $query = null)
     {
         if (null === $query) {
             $query = $this;
