@@ -16,10 +16,10 @@ class Dispatch
     public $query;
 
     protected static $operatorMap = [
-        '<'=>DefaultFilter::class,
-        '<='=>DefaultFilter::class,
-        '>'=>DefaultFilter::class,
-        '>='=>DefaultFilter::class,
+        '<' => DefaultFilter::class,
+        '<=' => DefaultFilter::class,
+        '>' => DefaultFilter::class,
+        '>=' => DefaultFilter::class,
         '%' => LikeFilter::class,
     ];
 
@@ -51,7 +51,7 @@ class Dispatch
         } else {
             [$operator,$value] = $this->resolveOperator($val);
             $filter = $this->getFilterClass($operator);
-            (new $filter($this->query, $key, $value,$operator))();
+            (new $filter($this->query, $key, $value, $operator))();
         }
     }
 
