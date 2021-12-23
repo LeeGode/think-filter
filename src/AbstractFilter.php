@@ -40,11 +40,12 @@ class AbstractFilter
      */
     public function apply(): Query
     {
+        $this->input = $this->getInput($this->input);
         if (method_exists($this, 'init')) {
-            $this->init();
+            $this->init($this->input);
         }
         if (is_string($this)) {
-            $this->filterScene();
+            $this->filterScene($this->input);
         } else {
             $this->filterInput();
         }
@@ -56,6 +57,7 @@ class AbstractFilter
      * 获取过滤器方法.
      *
      * @param $filed
+     * @return string
      */
     public function getFilterMethod($filed): string
     {
@@ -67,7 +69,7 @@ class AbstractFilter
      */
     public function filterInput(): void
     {
-        $this->input = $this->getInput($this->input);
+
         foreach ($this->input as $key => $val) {
             $method = $this->getFilterMethod($key);
             if (method_exists($this, $method)) {
@@ -84,14 +86,14 @@ class AbstractFilter
      * @throws InvalidArgumentException
      * @throws SceneNotFoundException
      */
-    public function filterScene(): void
+    public function filterScene($input): void
     {
         $method = $this->getSceneMethod($this->input);
         if (!method_exists($this, $method)) {
             throw new SceneNotFoundException('未找到场景方法：'.$method);
         }
 
-        $this->{$method}();
+        $this->{$method}($input);
     }
 
     /**
@@ -117,8 +119,8 @@ class AbstractFilter
             if ($this->isEmptyInput($val)) {
                 continue;
             }
-            if (in_array($key, $this->ignoreFields)) {
-                unset($input,$key);
+            if (in_array($key, $this->ignoreFields,true)) {
+                unset($input[$key]);
             }
         }
 
@@ -130,6 +132,7 @@ class AbstractFilter
      *
      * @param $scene
      *
+     * @return string
      * @throws InvalidArgumentException
      */
     public function getSceneMethod($scene): string
@@ -145,11 +148,13 @@ class AbstractFilter
      * 输入值是为空.
      *
      * @param $value
+     * @return bool
      */
     protected function isEmptyInput($value): bool
     {
         return '' !== $value && null !== $value && !(is_array($value) && empty($value));
     }
+
 
     public function __call($method, $args)
     {

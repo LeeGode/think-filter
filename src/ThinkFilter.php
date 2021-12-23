@@ -24,21 +24,21 @@ trait ThinkFilter
      * @param array|string $input
      * @param $filter
      */
-    public function scopeFilter($query, $input = [], $filter = null)
+    public function scopeFilter($query, $input = [], $filter = null): void
     {
-        $this->filter($query, $input, $filter);
+        $this->filter( $input, $filter,$query);
     }
 
     /**
      * query搜索器入口.
      *
-     * @param null  $query
-     * @param array $input
-     * @param null  $filter
+     * @param  array|null  $input
+     * @param  null  $filter
      *
+     * @param  null  $query
      * @return mixed
      */
-    public function filter($query = null, $input = [], $filter = null)
+    public function filter( ?array $input = [], $filter = null,$query = null)
     {
         if (null === $query) {
             $query = $this;
@@ -68,6 +68,7 @@ trait ThinkFilter
      */
     private function getFilter($filter = null)
     {
+        dump(class_basename($this));
         if (null === $filter) {
             $filter = Config::get('filter.namespace', 'app\\filters\\').class_basename($this).'Filter';
             if (!class_exists($filter)) {

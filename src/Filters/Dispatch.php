@@ -70,8 +70,16 @@ class Dispatch
      */
     protected function resolveOperator(string $val): array
     {
-        if (array_key_exists($val[0], self::$operatorMap)) {
-            return [$val[0], ltrim($val, $val[0])];
+         $valArr = explode(',', $val);
+         if(count($valArr) > 1){
+             $operator = array_shift($valArr);
+             $value = implode(',', $valArr);
+         }else{
+             $operator=null;
+             $value=$val;
+         }
+        if (array_key_exists($operator, self::$operatorMap)) {
+            return [$operator,$value];
         }
 
         return [null, $val];
