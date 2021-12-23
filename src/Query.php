@@ -11,9 +11,9 @@
 
 namespace Leegode\ThinkFilter;
 
-use think\db\Query;
+use think\db\Query as ThinkQuery;
 
-class Test extends Query
+class Query extends ThinkQuery
 {
     use ThinkFilter;
 }

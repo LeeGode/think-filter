@@ -15,6 +15,14 @@ class DefaultFilter extends Filter
 {
     public function __invoke()
     {
-        $this->query->where($this->name, $this->value);
+        $operator = $this->getOperator() ?: '=';
+        if( is_array($this->value)) {
+            $operator = $this->getOperator() ?: 'in';
+        }
+
+        $this->query->where($this->name, $operator,$this->value);
     }
+
+
+
 }

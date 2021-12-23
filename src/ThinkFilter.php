@@ -29,6 +29,13 @@ trait ThinkFilter
         $this->filter($query, $input, $filter);
     }
 
+    /**
+     * query搜索器入口
+     * @param  null  $query
+     * @param  array  $input
+     * @param  null  $filter
+     * @return mixed
+     */
     public function filter($query = null, $input = [], $filter = null)
     {
         if (null === $query) {
@@ -42,11 +49,19 @@ trait ThinkFilter
         return $this->filterInstance->apply();
     }
 
+    /**
+     * 获取过滤器类
+     * @return mixed|string|null
+     */
     private function getClass()
     {
         return method_exists($this, 'getFilterClass') ? $this->getFilterClass() : $this->getFilter();
     }
 
+    /**
+     * 获取过滤器
+     * @return mixed|string|null
+     */
     private function getFilter($filter = null)
     {
         if (null === $filter) {

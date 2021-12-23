@@ -16,17 +16,25 @@ abstract class Filter
     protected $query;
     protected $name;
     protected $value;
+    protected $operator;
 
     /**
      * @param $query
      * @param $name
      * @param $value
+     * @param  null  $operator
      */
-    public function __construct($query, $name, $value)
+    public function __construct($query, $name, $value,$operator=null)
     {
         $this->query = $query;
         $this->name = $name;
         $this->value = $value;
+        $this->operator = $operator;
+
+    }
+    protected function getOperator()
+    {
+        return $this->operator;
     }
 
     abstract public function __invoke();
