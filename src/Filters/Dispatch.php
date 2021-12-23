@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of theleegode/think-filter.
+ * This file is part of the leegode/think-filter.
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
@@ -29,7 +29,8 @@ class Dispatch
     }
 
     /**
-     * 执行入口
+     * 执行入口.
+     *
      * @param $key
      * @param $val
      */
@@ -39,7 +40,8 @@ class Dispatch
     }
 
     /**
-     * 分发处理
+     * 分发处理.
+     *
      * @param $key
      * @param $val
      */
@@ -57,9 +59,6 @@ class Dispatch
 
     /**
      * 获取默认过滤处理类.
-     *
-     * @param  string|null  $operator
-     * @return string
      */
     protected function getFilterClass(?string $operator): string
     {
