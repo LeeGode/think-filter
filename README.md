@@ -43,10 +43,15 @@ $query = User::buildQuery()
 $users = $query->select();
 ```
 过滤参数传入后端默认接收为filter数组
-* sort参数为排序字段，+为ASC，-为DESC，多个字段排序用逗号分隔，例：-create_time为order('create_time','desc')
+* sort参数为排序字段，+为ASC，-为DESC，多个字段排序用逗号分隔，例：-create_time为
+```php
+$query->order('create_time','desc')
+```
 * 其它参数为数据库字段查询条件，操作符和值用英文逗号隔开，无操作符默认为=，例：>,10
-* 目前可用操作符有=，>,>=,<,<=,%、%为模糊查询，例：name=%zhangSan为where('name','like',%zhangSan为where%)
-
+* 目前可用操作符有=，>,>=,<,<=,%、%为模糊查询，例：name=%zhangSan为
+```php
+$query->where('name','like',%zhangSan为where%)
+```
 ### 自定义过滤器
 如果存在app\filters\模型名称Filter'类则会使用该类进行过滤，如果不存在则使用默认的过滤器,在定义过滤器时，需要注意继承Leegode\ThinkFilter\BaseFilter,
 filter方法第二个参数也可以传入指定过滤器类,方便根据不同场景自定义过滤器
@@ -69,33 +74,3 @@ public function sceneEditor($filters){
 
 其它功能慢慢探索吧!
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-filter默认会使用
