@@ -28,12 +28,22 @@ class Dispatch
         $this->query = $query;
     }
 
-    public function handle($key, $val)
+    /**
+     * 执行入口
+     * @param $key
+     * @param $val
+     */
+    public function handle($key, $val): void
     {
-        $this->dispachFilter($key, $val);
+        $this->dispatchFilter($key, $val);
     }
 
-    protected function dispachFilter($key, $val)
+    /**
+     * 分发处理
+     * @param $key
+     * @param $val
+     */
+    protected function dispatchFilter($key, $val): void
     {
         //处理排序参数
         if ('sort' === $key) {
@@ -48,9 +58,10 @@ class Dispatch
     /**
      * 获取默认过滤处理类.
      *
-     * @param string $operator
+     * @param  string|null  $operator
+     * @return string
      */
-    protected function getFilterClass($operator): string
+    protected function getFilterClass(?string $operator): string
     {
         return ($operator && self::$operatorMap[$operator]) ? self::$operatorMap[$operator] : DefaultFilter::class;
     }
