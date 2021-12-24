@@ -67,7 +67,6 @@ trait ThinkFilter
      */
     private function getFilter($filter = null)
     {
-        dump(class_basename($this));
         if (null === $filter) {
             $filter = Config::get('filter.namespace', 'app\\filters\\').class_basename($this).'Filter';
             if (!class_exists($filter)) {
