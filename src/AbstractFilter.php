@@ -28,7 +28,7 @@ class AbstractFilter
     protected $allowFields = [];
     protected $scene = [];
 
-    public function __construct(Query $query, $input = [],$allowFields=[],$scene=null)
+    public function __construct(Query $query, $input = [], $allowFields = [], $scene = null)
     {
         $this->query = $query;
         $this->input = $input;
@@ -123,7 +123,7 @@ class AbstractFilter
             if ($this->isEmptyInput($val)) {
                 continue;
             }
-            if ( $this->allowFields && !in_array($key, $this->allowFields, true)) {
+            if ($this->allowFields && !in_array($key, $this->allowFields, true)) {
                 unset($input[$key]);
             }
         }
