@@ -11,13 +11,16 @@
 
 namespace Leegode\ThinkFilter;
 
+use think\facade\Config;
 use think\Service;
 
 class ThinkFilterService extends Service
 {
-    public function register()
+
+
+    public function boot()
     {
-        dump('aaa');
-//        dump($this->app->config->get('database'));
+        $databaseConfig = Config::get('database');
+        Config::set(data_set($databaseConfig, 'connections.mysql.query', Query::class),'database');
     }
 }

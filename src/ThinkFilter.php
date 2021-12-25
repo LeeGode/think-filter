@@ -17,17 +17,7 @@ trait ThinkFilter
 {
     protected $filterInstance;
 
-    /**
-     * 模型搜索器入口.
-     *
-     * @param $query
-     * @param array|string $input
-     * @param $filter
-     */
-    public function scopeFilter($query, $input = [], $filter = null): void
-    {
-        $this->filter($input, $filter, $query);
-    }
+
 
     /**
      * query搜索器入口.
