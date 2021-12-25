@@ -30,10 +30,6 @@ class SortFilter extends Filter
 
     /**
      * 解析排序操作符.
-     *
-     * @param  string|null  $param
-     *
-     * @return array
      */
     protected function getOrderOperator(?string $param): array
     {

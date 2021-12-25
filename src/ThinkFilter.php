@@ -20,20 +20,17 @@ trait ThinkFilter
     /**
      * query搜索器入口.
      *
-     * @param  array|null  $input
-     * @param  array  $allowFields
-     * @param  null  $filter
+     * @param null $filter
      *
      * @return mixed
      */
-    public function filter(?array $input = [], array $allowFields=[],$filter = null)
+    public function filter(?array $input = [], array $allowFields = [], $filter = null)
     {
-
         if (null === $filter) {
             $filter = $this->getClass();
         }
 
-        $this->filterInstance = new $filter($this, $input,$allowFields);
+        $this->filterInstance = new $filter($this, $input, $allowFields);
 
         return $this->filterInstance->apply();
     }
