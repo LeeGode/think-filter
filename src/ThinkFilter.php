@@ -17,8 +17,6 @@ trait ThinkFilter
 {
     protected $filterInstance;
 
-
-
     /**
      * query搜索器入口.
      *

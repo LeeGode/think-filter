@@ -16,11 +16,9 @@ use think\Service;
 
 class ThinkFilterService extends Service
 {
-
-
     public function boot()
     {
         $databaseConfig = Config::get('database');
-        Config::set(data_set($databaseConfig, 'connections.mysql.query', Query::class),'database');
+        Config::set(data_set($databaseConfig, 'connections.mysql.query', Query::class), 'database');
     }
 }
