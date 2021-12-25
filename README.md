@@ -22,9 +22,9 @@ db或者Db::table使用
 db('user')->filter()->select();
 ```
 ### 简单查询
-####  /users?filter[name]=zhangSan&filter[id]=>,10&filter[nick]=%,lee&filter[sort]=-create_time
+####  where条件查询 /users?filter[name]=zhangSan&filter[id]=>,10&filter[nick]=%,lee&filter[sort]=-create_time
 
-过滤器会自动根据条件过滤，相当于自动执行了如下代码
+
 ```php
 $filters = Request::param('filter');
 $query = User::buildQuery()

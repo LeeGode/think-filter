@@ -22,7 +22,7 @@ class SortFilter extends Filter
     {
         $params = explode(',', $this->value);
         foreach ($params as $param) {
-            [$operator,$value] = $this->getOperator($param);
+            [$operator,$value] = $this->getOrderOperator($param);
 
             $this->query->order($value, self::$operatorMap[$operator]);
         }
@@ -31,9 +31,11 @@ class SortFilter extends Filter
     /**
      * 解析排序操作符.
      *
-     * @param $param
+     * @param  string|null  $param
+     *
+     * @return array
      */
-    private function getOperator($param): array
+    protected function getOrderOperator(?string $param): array
     {
         if (array_key_exists($param[0], self::$operatorMap)) {
             return [$param[0], ltrim($param, $param[0])];
