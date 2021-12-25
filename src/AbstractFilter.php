@@ -61,6 +61,8 @@ class AbstractFilter
      * 获取过滤器方法.
      *
      * @param $filed
+     *
+     * @return string
      */
     public function getFilterMethod($filed): string
     {
@@ -134,6 +136,7 @@ class AbstractFilter
      *
      * @param $scene
      *
+     * @return string
      * @throws InvalidArgumentException
      */
     public function getSceneMethod($scene): string
@@ -149,6 +152,8 @@ class AbstractFilter
      * 输入值是为空.
      *
      * @param $value
+     *
+     * @return bool
      */
     protected function isEmptyInput($value): bool
     {
