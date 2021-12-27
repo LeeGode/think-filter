@@ -16,6 +16,19 @@ namespace think\facade {
 
 }
 
+namespace think\db {
+
+    use Leegode\ThinkFilter\ThinkFilter;
+
+    class  Query {
+        public static function filter(?array $input = [], $filter = null, $query = null)
+        {
+            /** @var ThinkFilter $instance */
+            return $instance->filter($input = [], $filter = null, $query = null);
+        }
+    }
+}
+
 namespace  think {
 
     use Leegode\ThinkFilter\ThinkFilter;
