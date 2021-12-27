@@ -10,7 +10,11 @@
  */
 
 namespace Leegode\ThinkFilter;
+use think\db\Query;
 
+/**
+ * @mixin Query
+ */
 class BaseFilter extends AbstractFilter
 {
 }
