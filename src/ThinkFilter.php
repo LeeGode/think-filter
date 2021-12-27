@@ -52,7 +52,6 @@ trait ThinkFilter
      */
     private function getFilter($filter = null)
     {
-
         if (null === $filter) {
             $filter = Config::get('filter.namespace', 'app\\filters\\').class_basename($this->model).'Filter';
             if (!class_exists($filter)) {
