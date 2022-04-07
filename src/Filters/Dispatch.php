@@ -47,7 +47,7 @@ class Dispatch
      */
     protected function dispatchFilter($key, $val): void
     {
-        //处理排序参数
+        // 处理排序参数
         if ('sort' === $key) {
             (new SortFilter($this->query, $key, $val))();
         } else {

@@ -22,7 +22,6 @@ abstract class Filter
      * @param $query
      * @param $name
      * @param $value
-     * @param  string|null  $operator
      */
     public function __construct($query, $name, $value, ?string $operator = null)
     {
@@ -35,13 +34,12 @@ abstract class Filter
     abstract public function __invoke();
 
     /**
-     * 获取操作符
+     * 获取操作符.
+     *
      * @return null
      */
     protected function getOperator(): ?string
     {
         return $this->operator;
     }
-
-
 }
